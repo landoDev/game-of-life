@@ -1,2 +1,2 @@
-# game-of-life
-CS Build Week 1
+# Lando's Game of Life
+CS Build Week 1 Project
