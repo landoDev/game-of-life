@@ -120,6 +120,14 @@ function App() {
           runSim();
         };
       }}>{isRunning ? 'Stop' : 'Start'}</button>
+      <button
+      onClick={()=> {
+        const rows = [];
+        for(let i = 0; i < numRows; i++){
+          rows.push(Array.from(Array(numCols), () => Math.random() > .7 ? 1 : 0))
+        };
+        setGrid(rows);
+      }}>Rando Calrissian</button>
       <button onClick={()=> {
         setGrid(clearGrid());
       }}>Clear</button>
