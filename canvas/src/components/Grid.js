@@ -5,7 +5,8 @@ import {
     numRows,
     operations,
     clearGrid,
-    generateRandom
+    generateRandom,
+    generateBarvana
 } from './grid-helpers';
 import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
 
@@ -14,14 +15,13 @@ function Grid() {
   const [grid, setGrid] = useState(() => {
     // useState initialized as function so it runs once and stays rendered
     return clearGrid();
-  })
+  });
+  
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
 
-  // ref current value will always be update
-  // allows to use a current value in a callback (runSim)
-  const runningRef = useRef();
-  runningRef.current = isRunning;
+  const runningRef = useRef(); // ref current value will always be update
+  runningRef.current = isRunning; // allows to use a current value in a callback (runSim)
 
   // run simulation
   const runSim = useCallback(()=>{
@@ -57,16 +57,26 @@ function Grid() {
       })
     })
     // call run sim again
-    setTimeout(runSim, 1000) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, 100) // write fn to make setTimeout dynamic later
   },[]); // empty array ensures the function is only created once
 
   return(
     <GridContainer className="Grid">
       <GridBoundary>
+        <ButtonContainer>
+        <button onClick={()=> {
+            setGrid(generateRandom());
+        }}>Rando Calrissian</button>
+        <button onClick={()=> {
+            setGrid(generateBarvana());
+        }}>Barvana</button>
+        </ButtonContainer>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
-            gridTemplateColumns: `repeat(${numCols}, 20px)`
+            gridTemplateColumns: `repeat(${numCols}, 20px)`,
+            // backgroundColor: 'red'
+            // border: '2px solid red'
         }}>
             {/* map through grid to make rows and chain to make cols */}
             {grid.map((rows, i) => 
@@ -101,12 +111,9 @@ function Grid() {
             runSim();
             };
         }}>{isRunning ? 'Stop' : 'Start'}</button>
-        <button
-        onClick={()=> {
-            setGrid(generateRandom());
-        }}>Rando Calrissian</button>
         <button onClick={()=> {
             setGrid(clearGrid());
+            setIsRunning(false);
         }}>Clear</button>
       </ButtonContainer>
       </GridBoundary>

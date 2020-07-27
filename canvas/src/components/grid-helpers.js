@@ -31,4 +31,28 @@ export const generateRandom = () => {
     return rows;
 }
 
+// Preset functions
+const generateVader = () => {
+    const rows = [];
+    for(let i = 0; i < numRows; i++){
+      rows.push(Array.from(Array(numCols), () => 1))
+    };
+    return rows;
+};
+export const generateBarvana = () => {
+    const rows = [];
+    let rowCount = 0
+    for(let i = 0; i < numRows; i++){
+        // start a counter to skip rows
+        if(rowCount > 5 && rowCount < 10){
+            rows.push(Array.from(Array(numCols), () => 1))
+        } else {
+            rows.push(Array.from(Array(numCols), () => 0))
+        };
+        rowCount += 1;
+    };
+    return rows;
+}
+
+
   
