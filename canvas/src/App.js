@@ -15,17 +15,21 @@ const operations = [
   [-1, -1],
   [1, 0],
   [-1, 0]
-]
+];
+
+const clearGrid = () => {
+  const rows = [];
+  for(let i = 0; i < numRows; i++){
+    rows.push(Array.from(Array(numCols), () => 0))
+  };
+  return rows;
+};
 
 function App() {
   // initialize grid
   const [grid, setGrid] = useState(() => {
     // useState initialized as function so it runs once and stays rendered
-    const rows = [];
-    for(let i = 0; i < numRows; i++){
-      rows.push(Array.from(Array(numCols), () => 0))
-    };
-    return rows;
+    return clearGrid();
   })
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
@@ -69,7 +73,7 @@ function App() {
       })
     })
     // call run sim again
-    setTimeout(runSim, 1000) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, 100) // write fn to make setTimeout dynamic later
 
   },[]); // empty array ensures the function is only created once
 
@@ -116,6 +120,9 @@ function App() {
           runSim();
         };
       }}>{isRunning ? 'Stop' : 'Start'}</button>
+      <button onClick={()=> {
+        setGrid(clearGrid());
+      }}>Clear</button>
     </div>
   ) 
 }
