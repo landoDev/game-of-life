@@ -1,0 +1,1 @@
+// component to explain and go in detail about what the game of life is

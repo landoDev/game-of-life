@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+// App styles
+export const PlayContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`;
+
 // Grid Component Styles //
 export const GridContainer = styled.div`
     display: flex;

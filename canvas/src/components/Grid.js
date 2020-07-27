@@ -64,19 +64,17 @@ function Grid() {
     <GridContainer className="Grid">
       <GridBoundary>
         <ButtonContainer>
-        <button onClick={()=> {
-            setGrid(generateRandom());
-        }}>Rando Calrissian</button>
-        <button onClick={()=> {
-            setGrid(generateBarvana());
-        }}>Barvana</button>
+            <button onClick={()=> {
+                setGrid(generateRandom());
+            }}>Rando Calrissian</button>
+            <button onClick={()=> {
+                setGrid(generateBarvana());
+            }}>Barvana</button>
         </ButtonContainer>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${numCols}, 20px)`,
-            // backgroundColor: 'red'
-            // border: '2px solid red'
         }}>
             {/* map through grid to make rows and chain to make cols */}
             {grid.map((rows, i) => 
