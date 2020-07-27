@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import produce from 'immer'; // set immutable state
 import './App.css';
 
 const numRows = 25;
@@ -13,9 +13,14 @@ function App() {
     for(let i = 0; i < numRows; i++){
       rows.push(Array.from(Array(numCols), () => 0))
     };
-
     return rows;
   })
+  // Simulation running state
+  const [isRunning, setIsRunning] = useState(false);
+
+  // State for simulation
+  const [runSim, setRunSim] = useState()
+
 
   // later on try to break this into styled components to clean up the main component
 
@@ -34,7 +39,11 @@ function App() {
             key={`${i}-${k}`}
             // clickable
             onClick={() => {
-              setGrid()
+              const newGrid = produce(grid, gridCopy => {
+                gridCopy[i][k] = !grid[i][k]; // switch to toggle
+              })
+              // updates the grid with the new grid value without changing the initial state
+              setGrid(newGrid);
             }} 
             style={{
               width: 20, 
@@ -46,6 +55,9 @@ function App() {
           ))
         )}
       </div>
+      <button onClick={() =>{
+        setIsRunning(!isRunning)
+      }}>{isRunning ? 'Stop' : 'Start'}</button>
     </div>
   ) 
 }
