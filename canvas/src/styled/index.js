@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
-// App styles
+// App styles //
 export const PlayContainer = styled.div`
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    .rules-container {
+        width: 40%
+    }
+    .grid-container {
+        width: 50%;
+    }
 `;
+// App Styles End //
 
 // Grid Component Styles //
 export const GridContainer = styled.div`
@@ -25,3 +31,11 @@ export const ButtonContainer = styled.div`
 `;
 
 // Grid Component Styles End //
+
+// Rules Component Styles //
+
+export const RulesContainer = styled.div`
+    margin-right: 5%;
+`;
+
+// Rules Component Styles End //

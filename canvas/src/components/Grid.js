@@ -61,16 +61,8 @@ function Grid() {
   },[]); // empty array ensures the function is only created once
 
   return(
-    <GridContainer className="Grid">
+    <GridContainer className="grid-container">
       <GridBoundary>
-        <ButtonContainer>
-            <button onClick={()=> {
-                setGrid(generateRandom());
-            }}>Rando Calrissian</button>
-            <button onClick={()=> {
-                setGrid(generateBarvana());
-            }}>Barvana</button>
-        </ButtonContainer>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
@@ -114,6 +106,15 @@ function Grid() {
             setIsRunning(false);
         }}>Clear</button>
       </ButtonContainer>
+      <h4>Generate A Sim:</h4>
+      <ButtonContainer>
+            <button onClick={()=> {
+                setGrid(generateRandom());
+            }}>Rando Calrissian</button>
+            <button onClick={()=> {
+                setGrid(generateBarvana());
+            }}>Barvana</button>
+        </ButtonContainer>
       </GridBoundary>
     </GridContainer>
   ) 
