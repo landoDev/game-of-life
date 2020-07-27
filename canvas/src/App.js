@@ -31,7 +31,11 @@ function App() {
         {grid.map((rows, i) => 
           rows.map((col, k) => (
             <div
-            key={`${i}-${k}`} 
+            key={`${i}-${k}`}
+            // clickable
+            onClick={() => {
+              setGrid()
+            }} 
             style={{
               width: 20, 
               height: 20, 
