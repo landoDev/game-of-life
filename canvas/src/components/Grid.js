@@ -3,17 +3,10 @@ import produce from 'immer'; // set immutable state
 import { 
     numCols,
     numRows,
-    operations
+    operations,
+    clearGrid,
+    generateRandom
 } from './grid-helpers';
-
-
-const clearGrid = () => {
-  const rows = [];
-  for(let i = 0; i < numRows; i++){
-    rows.push(Array.from(Array(numCols), () => 0))
-  };
-  return rows;
-};
 
 function Grid() {
   // initialize grid
@@ -63,16 +56,11 @@ function Grid() {
       })
     })
     // call run sim again
-    setTimeout(runSim, 100) // write fn to make setTimeout dynamic later
-
+    setTimeout(runSim, 1000) // write fn to make setTimeout dynamic later
   },[]); // empty array ensures the function is only created once
 
-
-  // later on try to break this into styled components to clean up the main component
-
   return(
-    <div className="App">
-      <h1>Lando's Game of Life</h1>
+    <div className="Grid">
       {/* style the grid so it's a square */}
       <div style={{
         display: 'grid',
@@ -104,7 +92,7 @@ function Grid() {
       <button onClick={() =>{
         setIsRunning(!isRunning);
         if(!isRunning){
-          // handle race condition between setIsRunning and running the sim
+          // handle race condition 
           runningRef.current = true;
           // DON'T FORGET TO CALL THE SIMULATION
           runSim();
@@ -112,11 +100,7 @@ function Grid() {
       }}>{isRunning ? 'Stop' : 'Start'}</button>
       <button
       onClick={()=> {
-        const rows = [];
-        for(let i = 0; i < numRows; i++){
-          rows.push(Array.from(Array(numCols), () => Math.random() > .7 ? 1 : 0))
-        };
-        setGrid(rows);
+        setGrid(generateRandom());
       }}>Rando Calrissian</button>
       <button onClick={()=> {
         setGrid(clearGrid());
