@@ -7,6 +7,7 @@ import {
     clearGrid,
     generateRandom
 } from './grid-helpers';
+import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
 
 function Grid() {
   // initialize grid
@@ -60,52 +61,56 @@ function Grid() {
   },[]); // empty array ensures the function is only created once
 
   return(
-    <div className="Grid">
-      {/* style the grid so it's a square */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${numCols}, 20px)`
-      }}>
-        {/* map through grid to make rows and chain to make cols */}
-        {grid.map((rows, i) => 
-          rows.map((col, k) => (
-            <div
-            key={`${i}-${k}`}
-            // clickable
-            onClick={() => {
-              const newGrid = produce(grid, gridCopy => {
-                gridCopy[i][k] = !grid[i][k]; // switch to toggle
-              })
-              // updates the grid with the new grid value without changing the initial state
-              setGrid(newGrid);
-            }} 
-            style={{
-              width: 20, 
-              height: 20, 
-              backgroundColor: grid[i][k] ? 'black' : undefined, 
-              border: "solid 1px black"
-              }} 
-            />
-          ))
-        )}
-      </div>
-      <button onClick={() =>{
-        setIsRunning(!isRunning);
-        if(!isRunning){
-          // handle race condition 
-          runningRef.current = true;
-          // DON'T FORGET TO CALL THE SIMULATION
-          runSim();
-        };
-      }}>{isRunning ? 'Stop' : 'Start'}</button>
-      <button
-      onClick={()=> {
-        setGrid(generateRandom());
-      }}>Rando Calrissian</button>
-      <button onClick={()=> {
-        setGrid(clearGrid());
-      }}>Clear</button>
-    </div>
+    <GridContainer className="Grid">
+      <GridBoundary>
+        {/* style the grid so it's a square */}
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${numCols}, 20px)`
+        }}>
+            {/* map through grid to make rows and chain to make cols */}
+            {grid.map((rows, i) => 
+            rows.map((col, k) => (
+                <div
+                key={`${i}-${k}`}
+                // clickable
+                onClick={() => {
+                const newGrid = produce(grid, gridCopy => {
+                    gridCopy[i][k] = !grid[i][k]; // switch to toggle
+                })
+                // updates the grid with the new grid value without changing the initial state
+                setGrid(newGrid);
+                }} 
+                style={{
+                width: 20, 
+                height: 20, 
+                backgroundColor: grid[i][k] ? 'black' : undefined, 
+                border: "solid 1px black"
+                }} 
+                />
+            ))
+            )}
+        </div>
+      </GridBoundary>
+      <ButtonContainer>
+        <button onClick={() =>{
+            setIsRunning(!isRunning);
+            if(!isRunning){
+            // handle race condition 
+            runningRef.current = true;
+            // DON'T FORGET TO CALL THE SIMULATION
+            runSim();
+            };
+        }}>{isRunning ? 'Stop' : 'Start'}</button>
+        <button
+        onClick={()=> {
+            setGrid(generateRandom());
+        }}>Rando Calrissian</button>
+        <button onClick={()=> {
+            setGrid(clearGrid());
+        }}>Clear</button>
+      </ButtonContainer>
+    </GridContainer>
   ) 
 }
 
