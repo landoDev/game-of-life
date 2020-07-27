@@ -2,8 +2,20 @@ import React, { useState, useCallback, useRef } from 'react';
 import produce from 'immer'; // set immutable state
 import './App.css';
 
+// import these to be more modular?
 const numRows = 25;
 const numCols = 25;
+
+const operations = [
+  [0, 1],
+  [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
+  [1, 0],
+  [-1, 0]
+]
 
 function App() {
   // initialize grid
@@ -18,16 +30,45 @@ function App() {
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
 
-  // ref to protect runSim from isRunning updates
+  // ref current value will always be update
+  // allows to use a current value in a callback (runSim)
   const runningRef = useRef();
   runningRef.current = isRunning;
 
   // run simulation
   const runSim = useCallback(()=>{
-    if(!isRunning){
+    if(!runningRef.current){
       return; // kills sim if isRunning is false
     }
-    // simulate
+    // simulate using immer to create mutable copy
+    setGrid((g)=> {
+      return produce(g, gridCopy => {
+        for(let i = 0; i < numRows; i++){ // O(n^2) 😬
+          for(let k = 0; k < numCols; k++) {
+            let neighbors = 0;
+            // created logic to reduce duplication code
+            // computes the number of neighbors
+            operations.forEach(([x,y])=> {
+              const newI = i + x;
+              const newK = k + y;
+              // check the bounds of the grid
+              if(newI >= 0 && newI < numRows && newK >= 0 && newK < numCols){
+                neighbors += g[newI][newK];
+              };
+            });
+            
+            if(neighbors < 2 || neighbors > 3) {
+              // die conditions 💀
+              gridCopy[i][k] = 0
+            } else if(g[i][k] === 0 && neighbors === 3){
+              gridCopy[i][k] = 1
+              // IT'S ALIVEEEEEE 👶
+            };
+          };
+        };
+      })
+    })
+    // call run sim again
     setTimeout(runSim, 1000) // write fn to make setTimeout dynamic later
 
   },[]); // empty array ensures the function is only created once
@@ -67,7 +108,13 @@ function App() {
         )}
       </div>
       <button onClick={() =>{
-        setIsRunning(!isRunning)
+        setIsRunning(!isRunning);
+        if(!isRunning){
+          // handle race condition between setIsRunning and running the sim
+          runningRef.current = true;
+          // DON'T FORGET TO CALL THE SIMULATION
+          runSim();
+        };
       }}>{isRunning ? 'Stop' : 'Start'}</button>
     </div>
   ) 
