@@ -91,8 +91,7 @@ function Grid() {
             ))
             )}
         </div>
-      </GridBoundary>
-      <ButtonContainer>
+      <ButtonContainer className="grid-actions">
         <button onClick={() =>{
             setIsRunning(!isRunning);
             if(!isRunning){
@@ -110,6 +109,7 @@ function Grid() {
             setGrid(clearGrid());
         }}>Clear</button>
       </ButtonContainer>
+      </GridBoundary>
     </GridContainer>
   ) 
 }
