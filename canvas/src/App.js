@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import produce from 'immer'; // set immutable state
 import './App.css';
 
@@ -18,8 +18,19 @@ function App() {
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
 
-  // State for simulation
-  const [runSim, setRunSim] = useState()
+  // ref to protect runSim from isRunning updates
+  const runningRef = useRef();
+  runningRef.current = isRunning;
+
+  // run simulation
+  const runSim = useCallback(()=>{
+    if(!isRunning){
+      return; // kills sim if isRunning is false
+    }
+    // simulate
+    setTimeout(runSim, 1000) // write fn to make setTimeout dynamic later
+
+  },[]); // empty array ensures the function is only created once
 
 
   // later on try to break this into styled components to clean up the main component
