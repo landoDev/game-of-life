@@ -8,7 +8,7 @@ import {
     generateRandom,
 } from './grid-helpers';
 import { generateBalance, generateTieFighter } from './presets'
-import { GridContainer, ButtonContainer, GridBoundary, PresetDiv } from '../styled/index';
+import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar } from '../styled/index';
 
 
 function Grid() {
@@ -103,11 +103,14 @@ function Grid() {
 
   return(
     <GridContainer className="grid-container">
-      <span>{generation} Generations</span>
-      <button onClick={() => setSpeed(500)}>Normal</button>
-      <button value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
-      <button value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
       <GridBoundary>
+      <TopBar className="top-bar">
+        <span>{generation} Generations</span>
+        <label>Speed:</label>
+        <button onClick={() => setSpeed(500)}>Normal</button>
+        <button value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
+        <button value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
+      </TopBar>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
@@ -148,7 +151,7 @@ function Grid() {
             }}>Balance</button>
             <button onClick={()=> {
                 setGrid(generateTieFighter());
-            }}>Tie Fighter</button>
+            }}>TIE Fighter</button>
         </ButtonContainer>
         </PresetDiv>
       </GridBoundary>
