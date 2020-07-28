@@ -59,7 +59,7 @@ function Grid() {
       })
     })
     // call run sim again
-    setTimeout(runSim, 100) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, 500) // write fn to make setTimeout dynamic later
   },[]); // empty array ensures the function is only created once
 
   return(
@@ -87,7 +87,8 @@ function Grid() {
                 style={{
                 width: 20, 
                 height: 20, 
-                backgroundColor: grid[i][k] ? 'black' : undefined, 
+                backgroundColor: grid[i][k] ? '#FFE81F' : undefined,
+                // if people don't like the lack of box line it can be added back 
                 border: "solid 1px black"
                 }} 
                 />
