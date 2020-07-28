@@ -31,14 +31,7 @@ export const generateRandom = () => {
     return rows;
 }
 
-// Preset functions
-const generateVader = () => {
-    const rows = [];
-    for(let i = 0; i < numRows; i++){
-      rows.push(Array.from(Array(numCols), () => 1))
-    };
-    return rows;
-};
+// Random Function
 export const generateBarvana = () => {
     const rows = [];
     let rowCount = 0
@@ -51,8 +44,9 @@ export const generateBarvana = () => {
         };
         rowCount += 1;
     };
+    console.log(rows)
     return rows;
-}
+};
 
 
   

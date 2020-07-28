@@ -6,8 +6,9 @@ import {
     operations,
     clearGrid,
     generateRandom,
-    generateBarvana
+    generateBarvana,
 } from './grid-helpers';
+import { generateTieFighter } from './presets'
 import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
 
 function Grid() {
@@ -31,7 +32,7 @@ function Grid() {
     // simulate using immer to create mutable copy
     setGrid((g)=> {
       return produce(g, gridCopy => {
-        for(let i = 0; i < numRows; i++){ // O(n^2) 😬
+        for(let i = 0; i < numRows; i++){ // O(n^2) ? 😬
           for(let k = 0; k < numCols; k++) {
             let neighbors = 0;
             // created logic to reduce duplication code
@@ -114,6 +115,9 @@ function Grid() {
             <button onClick={()=> {
                 setGrid(generateBarvana());
             }}>Barvana</button>
+            <button onClick={()=> {
+                setGrid(generateTieFighter());
+            }}>Tie Fighter</button>
         </ButtonContainer>
       </GridBoundary>
     </GridContainer>
