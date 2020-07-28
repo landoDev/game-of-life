@@ -22,7 +22,7 @@ export const clearGrid = () => {
     };
     return rows;
   };
-
+// Random Function
 export const generateRandom = () => {
     const rows = [];
     for(let i = 0; i < numRows; i++){
@@ -31,22 +31,10 @@ export const generateRandom = () => {
     return rows;
 }
 
-// Random Function
-export const generateBalance = () => {
-    const rows = [];
-    let rowCount = 0
-    for(let i = 0; i < numRows; i++){
-        // start a counter to skip rows
-        if(rowCount > 5 && rowCount < 10){
-            rows.push(Array.from(Array(numCols), () => 1))
-        } else {
-            rows.push(Array.from(Array(numCols), () => 0))
-        };
-        rowCount += 1;
-    };
-    console.log(rows)
-    return rows;
-};
+// export const changeSpeed = (default, rate) => {
+//     // takes a default speed and the new rate
+//     switch()
+// }
 
 
   

@@ -6,9 +6,8 @@ import {
     operations,
     clearGrid,
     generateRandom,
-    generateBalance,
 } from './grid-helpers';
-import { generateTieFighter } from './presets'
+import { generateBalance, generateTieFighter } from './presets'
 import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
 
 function Grid() {
@@ -17,7 +16,7 @@ function Grid() {
     // useState initialized as function so it runs once and stays rendered
     return clearGrid();
   });
-  
+  let [generation, setGeneration] = useState(0);
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
 
@@ -27,8 +26,10 @@ function Grid() {
   // run simulation
   const runSim = useCallback(()=>{
     if(!runningRef.current){
+      setGeneration(0)
       return; // kills sim if isRunning is false
     }
+    setGeneration(generation += 1)
     // simulate using immer to create mutable copy
     setGrid((g)=> {
       return produce(g, gridCopy => {
@@ -64,6 +65,7 @@ function Grid() {
   return(
     <GridContainer className="grid-container">
       <GridBoundary>
+        <span>{generation} Generations</span>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
@@ -114,7 +116,7 @@ function Grid() {
             }}>Rando Calrissian</button>
             <button onClick={()=> {
                 setGrid(generateBalance());
-            }}>Barvana</button>
+            }}>Balance</button>
             <button onClick={()=> {
                 setGrid(generateTieFighter());
             }}>Tie Fighter</button>

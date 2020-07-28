@@ -1,4 +1,4 @@
-import { clearGrid } from './grid-helpers'
+import { clearGrid, numCols, numRows } from './grid-helpers'
 
 const tieFighter = {
     layer1: [1,0,0,0,0,0,0,0,1],
@@ -21,6 +21,22 @@ export const generateTieFighter = () => {
     rows.splice.apply(rows[14], [8, tieFighter.layer1.length].concat(tieFighter.layer5))
     rows.splice.apply(rows[15], [8, tieFighter.layer1.length].concat(tieFighter.layer6))
     rows.splice.apply(rows[16], [8, tieFighter.layer1.length].concat(tieFighter.layer7))
+    console.log(rows)
+    return rows;
+};
+
+export const generateBalance = () => {
+    const rows = [];
+    let rowCount = 0
+    for(let i = 0; i < numRows; i++){
+        // start a counter to skip rows
+        if(rowCount > 5 && rowCount < 10){
+            rows.push(Array.from(Array(numCols), () => 1))
+        } else {
+            rows.push(Array.from(Array(numCols), () => 0))
+        };
+        rowCount += 1;
+    };
     console.log(rows)
     return rows;
 };
