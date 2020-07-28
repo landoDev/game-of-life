@@ -10,6 +10,7 @@ import {
 import { generateBalance, generateTieFighter } from './presets'
 import { GridContainer, ButtonContainer, GridBoundary, PresetDiv } from '../styled/index';
 
+
 function Grid() {
   // initialize grid
   const [grid, setGrid] = useState(() => {
@@ -17,11 +18,19 @@ function Grid() {
     return clearGrid();
   });
   let [generation, setGeneration] = useState(0);
+  let [speed, setSpeed] = useState(500);
   // Simulation running state
   const [isRunning, setIsRunning] = useState(false);
-
   const runningRef = useRef(); // ref current value will always be update
   runningRef.current = isRunning; // allows to use a current value in a callback (runSim)
+  const speedRef = useRef()
+  speedRef.current = speed;
+
+  const changeSpeed = e => {
+      e.preventDefault();
+      let rateChange = parseInt(e.target.name)
+      setSpeed(speed / rateChange);
+  }
 
   // run simulation
   const runSim = useCallback(()=>{
@@ -58,13 +67,17 @@ function Grid() {
         };
       })
     })
+    console.log(speedRef.current)
     // call run sim again
-    setTimeout(runSim, 500) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, speedRef.current) // write fn to make setTimeout dynamic later
   },[]); // empty array ensures the function is only created once
 
   return(
     <GridContainer className="grid-container">
-      <span>{generation} Generations</span> 
+      <span>{generation} Generations</span>
+      <button onClick={() => setSpeed(500)}>Normal</button>
+      <button value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
+      <button value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
       <GridBoundary>
         {/* style the grid so it's a square */}
         <div style={{

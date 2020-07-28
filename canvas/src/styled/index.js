@@ -4,8 +4,10 @@ import styled from 'styled-components';
 export const PlayContainer = styled.div`
     display: flex;
     justify-content: space-around;
+    align-items: center;
     .rules-container {
         width: 40%
+        // align-self: left
     }
     .grid-container {
         width: 50%;
