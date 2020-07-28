@@ -22,8 +22,12 @@ export const GridContainer = styled.div`
 
 export const GridBoundary = styled.div`
     margin: 0 auto;
-    padding: .2%;
+    padding: .3%;
     border: 2px solid #FFE81F;
+`;
+
+export const PresetDiv = styled.div`
+    border-top: 1px solid yellow;
 `;
 
 export const ButtonContainer = styled.div`

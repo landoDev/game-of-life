@@ -8,7 +8,7 @@ import {
     generateRandom,
 } from './grid-helpers';
 import { generateBalance, generateTieFighter } from './presets'
-import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
+import { GridContainer, ButtonContainer, GridBoundary, PresetDiv } from '../styled/index';
 
 function Grid() {
   // initialize grid
@@ -64,8 +64,8 @@ function Grid() {
 
   return(
     <GridContainer className="grid-container">
+      <span>{generation} Generations</span> 
       <GridBoundary>
-        <span>{generation} Generations</span>
         {/* style the grid so it's a square */}
         <div style={{
             display: 'grid',
@@ -95,23 +95,9 @@ function Grid() {
             ))
             )}
         </div>
-      <ButtonContainer className="grid-actions">
-        <button onClick={() =>{
-            setIsRunning(!isRunning);
-            if(!isRunning){
-            // handle race condition 
-            runningRef.current = true;
-            // DON'T FORGET TO CALL THE SIMULATION
-            runSim();
-            };
-        }}>{isRunning ? 'Stop' : 'Start'}</button>
-        <button onClick={()=> {
-            setGrid(clearGrid());
-            setIsRunning(false);
-        }}>Clear</button>
-      </ButtonContainer>
-      <h4>Generate A Sim:</h4>
-      <ButtonContainer>
+        <PresetDiv>
+      <h4>Presets</h4>
+      <ButtonContainer className="presets">
             <button onClick={()=> {
                 setGrid(generateRandom());
             }}>Rando Calrissian</button>
@@ -122,7 +108,26 @@ function Grid() {
                 setGrid(generateTieFighter());
             }}>Tie Fighter</button>
         </ButtonContainer>
+        </PresetDiv>
       </GridBoundary>
+      <ButtonContainer className="grid-actions">
+        <button onClick={() =>{
+            setIsRunning(!isRunning);
+            if(!isRunning){
+            // handle race condition 
+            runningRef.current = true;
+            // DON'T FORGET TO CALL THE SIMULATION
+            runSim();
+            };
+        }}>{isRunning ? 'Stop' : 'Start'}</button>
+        <button onClick={() =>{
+            
+        }}> Next</button>
+        <button onClick={()=> {
+            setGrid(clearGrid());
+            setIsRunning(false);
+        }}>Clear</button>
+      </ButtonContainer>
     </GridContainer>
   ) 
 }
