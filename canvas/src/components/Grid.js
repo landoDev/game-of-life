@@ -67,10 +67,39 @@ function Grid() {
         };
       })
     })
-    console.log(speedRef.current)
+
     // call run sim again
     setTimeout(runSim, speedRef.current) // write fn to make setTimeout dynamic later
   },[]); // empty array ensures the function is only created once
+
+  // next step sim, refactor a way to pull this into runSim
+  const nextStep = useCallback(() => {
+    if (!runningRef.current) {
+      return;
+    }
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        for (let i = 0; i < numRows; i++) {
+          for (let k = 0; k < numCols; k++) {
+            let neighbors = 0;
+            operations.forEach(([x, y]) => {
+              const newI = i + x;
+              const newK = k + y;
+              if (newI >= 0 && newI < numRows && newK >= 0 && newK < numCols) {
+                neighbors += g[newI][newK];
+              }
+            });
+            if (neighbors < 2 || neighbors > 3) {
+              gridCopy[i][k] = 0;
+            } else if (g[i][k] === 0 && neighbors === 3) {
+              gridCopy[i][k] = 1;
+            }
+          }
+        }
+      });
+    });
+    setIsRunning(false);
+  }, []);
 
   return(
     <GridContainer className="grid-container">
@@ -134,7 +163,11 @@ function Grid() {
             };
         }}>{isRunning ? 'Stop' : 'Start'}</button>
         <button onClick={() =>{
-            
+            setIsRunning(!isRunning);
+            if(!isRunning){
+            runningRef.current = true;
+            nextStep();
+            };
         }}> Next</button>
         <button onClick={()=> {
             setGrid(clearGrid());
