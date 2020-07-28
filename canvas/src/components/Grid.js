@@ -6,7 +6,7 @@ import {
     operations,
     clearGrid,
     generateRandom,
-    generateBarvana,
+    generateBalance,
 } from './grid-helpers';
 import { generateTieFighter } from './presets'
 import { GridContainer, ButtonContainer, GridBoundary } from '../styled/index';
@@ -113,7 +113,7 @@ function Grid() {
                 setGrid(generateRandom());
             }}>Rando Calrissian</button>
             <button onClick={()=> {
-                setGrid(generateBarvana());
+                setGrid(generateBalance());
             }}>Barvana</button>
             <button onClick={()=> {
                 setGrid(generateTieFighter());

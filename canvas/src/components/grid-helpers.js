@@ -32,7 +32,7 @@ export const generateRandom = () => {
 }
 
 // Random Function
-export const generateBarvana = () => {
+export const generateBalance = () => {
     const rows = [];
     let rowCount = 0
     for(let i = 0; i < numRows; i++){
