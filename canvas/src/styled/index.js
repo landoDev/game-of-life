@@ -25,6 +25,7 @@ export const GridContainer = styled.div`
 export const TopBar = styled.div`
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 5%;
 `;
 
 export const GridBoundary = styled.div`

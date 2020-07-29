@@ -115,6 +115,7 @@ function Grid() {
         <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${numCols}, 20px)`,
+            padding: '1%'
         }}>
             {/* map through grid to make rows and chain to make cols */}
             {grid.map((rows, i) => 
