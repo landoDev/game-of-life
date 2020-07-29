@@ -8,7 +8,7 @@ import {
     generateRandom,
 } from './grid-helpers';
 import { generateBalance, generateTieFighter } from './presets'
-import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar } from '../styled/index';
+import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar, PresetButton } from '../styled/index';
 
 
 function Grid() {
@@ -106,8 +106,8 @@ function Grid() {
     <GridContainer className="grid-container">
       <GridBoundary>
       <TopBar className="top-bar">
-        <span>Generations:{generation} </span>
-        <label className="speed-label"> Speed:</label>
+        <label className="generations label-topbar">{generation}  Generations</label>
+        <label className="speed-label label-topbar"> Speed:</label>
         <button className="speed" onClick={() => setSpeed(500)}>Normal</button>
         <button className="speed" value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
         <button className="speed" value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
@@ -116,7 +116,7 @@ function Grid() {
         <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${numCols}, 20px)`,
-            padding: '2%'
+            // padding: '2px',
         }}>
             {/* map through grid to make rows and chain to make cols */}
             {grid.map((rows, i) => 
@@ -137,7 +137,6 @@ function Grid() {
                 backgroundColor: grid[i][k] ? '#FFE81F' : undefined,
                 // if people don't like the lack of box line it can be added back 
                 border: "solid 1px black",
-                // padding: '2%'
                 }} 
                 />
             ))
@@ -146,20 +145,20 @@ function Grid() {
         <PresetDiv>
       <h4>Presets</h4>
       <ButtonContainer className="presets">
-            <button onClick={()=> {
+            <PresetButton onClick={()=> {
                 setGrid(generateRandom());
-            }}>Rando Calrissian</button>
-            <button onClick={()=> {
+            }}>Rando Calrissian</PresetButton>
+            <PresetButton onClick={()=> {
                 setGrid(generateBalance());
-            }}>Balance</button>
-            <button onClick={()=> {
+            }}>Balance</PresetButton>
+            <PresetButton onClick={()=> {
                 setGrid(generateTieFighter());
-            }}>TIE Fighter</button>
+            }}>TIE Fighter</PresetButton>
         </ButtonContainer>
         </PresetDiv>
       </GridBoundary>
       <ButtonContainer className="grid-actions">
-        <button onClick={() =>{
+        <PresetButton onClick={() =>{
             setIsRunning(!isRunning);
             if(!isRunning){
             // handle race condition 
@@ -167,19 +166,19 @@ function Grid() {
             // DON'T FORGET TO CALL THE SIMULATION
             runSim();
             };
-        }}>{isRunning ? 'Stop' : 'Start'}</button>
-        <button onClick={() =>{
+        }}>{isRunning ? 'Stop' : 'Start'}</PresetButton>
+        <PresetButton onClick={() =>{
             setIsRunning(!isRunning);
             if(!isRunning){
             runningRef.current = true;
             nextStep();
             };
-        }}> Next</button>
-        <button onClick={()=> {
+        }}> Next</PresetButton>
+        <PresetButton onClick={()=> {
             setGeneration(0)
             setGrid(clearGrid());
             setIsRunning(false);
-        }}>Clear</button>
+        }}>Clear</PresetButton>
       </ButtonContainer>
     </GridContainer>
   ) 

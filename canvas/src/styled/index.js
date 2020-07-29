@@ -26,7 +26,9 @@ export const TopBar = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    padding: 0 1%;
     margin-bottom: 5%;
+    max-width: 100%
     .speed-label {
         margin-left: 5%;
     }
@@ -34,22 +36,34 @@ export const TopBar = styled.div`
         background-color: black;
         border: 1px solid black;
     }
+    .label-topbar {
+        font-size: 12px;
+    }
 `;
 
 export const GridBoundary = styled.div`
     margin: 0 auto;
-    padding: 1%;
+    padding: 2.5%;
     border: 2px solid #FFE81F;
+    align-items: center;
 `;
 
 export const PresetDiv = styled.div`
-    border-top: 1px solid yellow;
+    margin-top: 2%;
+    border-top: 1px solid #FFE81F;
 `;
 
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     margin: 5% 0;
+`;
+
+export const PresetButton = styled.button`
+    background-color: black;
+    border: 1px solid #FFE81F;
+    padding: 5px;
+    margin: 0 5%;
 `;
 
 // Grid Component Styles End //
