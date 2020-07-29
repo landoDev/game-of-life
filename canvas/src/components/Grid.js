@@ -110,7 +110,9 @@ function Grid() {
         <button className="speed" value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
       </TopBar>
         {/* style the grid so it's a square */}
-        <div style={{
+        <div 
+        className="grid-display"
+        style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${numCols}, 20px)`,
             // padding: '2px',

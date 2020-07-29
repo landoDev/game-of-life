@@ -1,6 +1,15 @@
 import styled from 'styled-components';
+import { device } from './devices';
+
+const { mobile } = device
 
 // App styles //
+export const ParentDiv = styled.div`
+    max-width: 100%;
+    // @media screen and ${mobile}{
+    //     width: 500px;
+    // }
+`;
 export const PlayContainer = styled.div`
     display: flex;
     justify-content: space-around;
@@ -11,6 +20,15 @@ export const PlayContainer = styled.div`
     }
     .grid-container {
         width: 50%;
+        @media screen and ${mobile}{
+            max-width: 100%;
+            margin: 0 auto;
+        }
+    }
+    @media screen and ${mobile}{
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
     }
 `;
 // App Styles End //
@@ -20,6 +38,9 @@ export const GridContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 5%;
+    @media screen and ${mobile}{
+        width: 100%;
+    }
 `;
 
 
