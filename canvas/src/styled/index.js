@@ -22,6 +22,7 @@ export const GridContainer = styled.div`
     margin-top: 5%;
 `;
 
+
 export const TopBar = styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -49,14 +50,19 @@ export const GridBoundary = styled.div`
 `;
 
 export const PresetDiv = styled.div`
-    margin-top: 2%;
+    margin-top: 5%;
     border-top: 1px solid #FFE81F;
 `;
 
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     margin: 5% 0;
+`;
+
+export const BtnWrapper = styled.div`
+    margin: 0 auto;
 `;
 
 export const PresetButton = styled.button`

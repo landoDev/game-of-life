@@ -8,7 +8,7 @@ import {
     generateRandom,
 } from './grid-helpers';
 import { generateBalance, generateTieFighter } from './presets'
-import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar, PresetButton } from '../styled/index';
+import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar, PresetButton, BtnWrapper } from '../styled/index';
 
 
 function Grid() {
@@ -107,6 +107,7 @@ function Grid() {
       <GridBoundary>
       <TopBar className="top-bar">
         <label className="generations label-topbar">{generation}  Generations</label>
+        <br></br>
         <label className="speed-label label-topbar"> Speed:</label>
         <button className="speed" onClick={() => setSpeed(500)}>Normal</button>
         <button className="speed" value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
@@ -157,6 +158,7 @@ function Grid() {
         </ButtonContainer>
         </PresetDiv>
       </GridBoundary>
+      <BtnWrapper>
       <ButtonContainer className="grid-actions">
         <PresetButton onClick={() =>{
             setIsRunning(!isRunning);
@@ -180,6 +182,7 @@ function Grid() {
             setIsRunning(false);
         }}>Clear</PresetButton>
       </ButtonContainer>
+      </BtnWrapper>
     </GridContainer>
   ) 
 }

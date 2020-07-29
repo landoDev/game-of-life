@@ -1,3 +1,5 @@
+
+
 // starting grid dimensions
 export const numRows = 25;
 export const numCols = 25;
@@ -36,5 +38,3 @@ export const generateRandom = () => {
 //     switch()
 // }
 
-
-  
