@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React from 'react';
 import Grid from './components/Grid';
 import './App.css';
 import Rules from './components/Rules';

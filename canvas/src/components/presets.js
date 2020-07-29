@@ -21,7 +21,6 @@ export const generateTieFighter = () => {
     rows.splice.apply(rows[14], [8, tieFighter.layer1.length].concat(tieFighter.layer5))
     rows.splice.apply(rows[15], [8, tieFighter.layer1.length].concat(tieFighter.layer6))
     rows.splice.apply(rows[16], [8, tieFighter.layer1.length].concat(tieFighter.layer7))
-    console.log(rows)
     return rows;
 };
 
@@ -37,7 +36,6 @@ export const generateBalance = () => {
         };
         rowCount += 1;
     };
-    console.log(rows)
     return rows;
 };
 

@@ -25,12 +25,8 @@ function Grid() {
   runningRef.current = isRunning; // allows to use a current value in a callback (runSim)
   const speedRef = useRef()
   speedRef.current = speed;
-
-  const changeSpeed = e => {
-      e.preventDefault();
-      let rateChange = parseInt(e.target.name)
-      setSpeed(speed / rateChange);
-  }
+  const genRef = useRef();
+  genRef.current = generation
 
   // run simulation
   const runSim = useCallback(()=>{
@@ -38,7 +34,7 @@ function Grid() {
       setGeneration(0)
       return; // kills sim if isRunning is false
     }
-    setGeneration(generation += 1)
+    setGeneration(genRef.current += 1)
     // simulate using immer to create mutable copy
     setGrid((g)=> {
       return produce(g, gridCopy => {
@@ -77,7 +73,7 @@ function Grid() {
     if (!runningRef.current) {
       return;
     };
-    setGeneration(generation += 1)
+    setGeneration(genRef.current += 1)
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         for (let i = 0; i < numRows; i++) {
