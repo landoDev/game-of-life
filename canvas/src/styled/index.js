@@ -14,6 +14,7 @@ export const PlayContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 5%;
     .rules-container {
         width: 40%
         // align-self: left
@@ -99,6 +100,13 @@ export const PresetButton = styled.button`
 
 export const RulesContainer = styled.div`
     margin-right: 5%;
+    .how-to {
+        margin-top: 10%;
+    }
+`;
+
+export const AboutContainer = styled.div`
+    margin: 0 5% 10% 5%;
 `;
 
 // Rules Component Styles End //

@@ -13,7 +13,9 @@ const Rules = () => {
                 <p>Rule 3: If a dead cell has exactly three surrounding cells, it will be reborn! <span role="img" aria-label="angel-baby">👼</span></p>
                 <p>Rule 4: If a cell has two or three surrounding cells, it staves of the cold embrace and survives <span role="img" aria-label="shades-emoji">😎</span> </p>
             </div>
-            <HowTo />
+            <div className="how-to">
+                <HowTo />
+            </div>
         </RulesContainer>
     )
 };

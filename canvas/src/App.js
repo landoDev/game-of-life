@@ -4,6 +4,7 @@ import './App.css';
 import Rules from './components/Rules';
 import About from './components/About';
 import { PlayContainer, ParentDiv } from './styled/index';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function App() {
 
@@ -15,7 +16,15 @@ function App() {
         <Rules />
       </PlayContainer>
       <About />
+      <footer style={{
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: '.5%'
+      }}>landoDev <a style={{ 
+        color: 'white',
+      }} href="https://github.com/landoDev"><GitHubIcon /></a></footer>
     </ParentDiv>
+    
   ) 
 }
 
