@@ -76,7 +76,8 @@ function Grid() {
   const nextStep = useCallback(() => {
     if (!runningRef.current) {
       return;
-    }
+    };
+    setGeneration(generation += 1)
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         for (let i = 0; i < numRows; i++) {
@@ -105,8 +106,8 @@ function Grid() {
     <GridContainer className="grid-container">
       <GridBoundary>
       <TopBar className="top-bar">
-        <span>{generation} Generations</span>
-        <label>Speed:</label>
+        <span>Generations:{generation} </span>
+        <label> Speed:</label>
         <button onClick={() => setSpeed(500)}>Normal</button>
         <button value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
         <button value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
@@ -115,7 +116,7 @@ function Grid() {
         <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${numCols}, 20px)`,
-            padding: '1%'
+            padding: '2%'
         }}>
             {/* map through grid to make rows and chain to make cols */}
             {grid.map((rows, i) => 
@@ -135,7 +136,8 @@ function Grid() {
                 height: 20, 
                 backgroundColor: grid[i][k] ? '#FFE81F' : undefined,
                 // if people don't like the lack of box line it can be added back 
-                border: "solid 1px black"
+                border: "solid 1px black",
+                // padding: '2%'
                 }} 
                 />
             ))
@@ -174,6 +176,7 @@ function Grid() {
             };
         }}> Next</button>
         <button onClick={()=> {
+            setGeneration(0)
             setGrid(clearGrid());
             setIsRunning(false);
         }}>Clear</button>

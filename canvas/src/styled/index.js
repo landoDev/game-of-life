@@ -25,12 +25,13 @@ export const GridContainer = styled.div`
 export const TopBar = styled.div`
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     margin-bottom: 5%;
 `;
 
 export const GridBoundary = styled.div`
     margin: 0 auto;
-    padding: .3%;
+    padding: 1%;
     border: 2px solid #FFE81F;
 `;
 
