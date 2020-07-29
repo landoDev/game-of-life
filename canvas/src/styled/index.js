@@ -27,6 +27,13 @@ export const TopBar = styled.div`
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 5%;
+    .speed-label {
+        margin-left: 5%;
+    }
+    .speed {
+        background-color: black;
+        border: 1px solid black;
+    }
 `;
 
 export const GridBoundary = styled.div`

@@ -107,10 +107,10 @@ function Grid() {
       <GridBoundary>
       <TopBar className="top-bar">
         <span>Generations:{generation} </span>
-        <label> Speed:</label>
-        <button onClick={() => setSpeed(500)}>Normal</button>
-        <button value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
-        <button value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
+        <label className="speed-label"> Speed:</label>
+        <button className="speed" onClick={() => setSpeed(500)}>Normal</button>
+        <button className="speed" value="2" onClick={() => setSpeed(500 / 2)}>2x</button>
+        <button className="speed" value="10" onClick={() => setSpeed(500 / 10)}>10x</button>
       </TopBar>
         {/* style the grid so it's a square */}
         <div style={{
