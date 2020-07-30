@@ -22,10 +22,13 @@ function App() {
     const playArea = componentRef.firstElementChild
     const ruleComponent = componentRef.lastElementChild
     TweenMax.to(app, 0, {css: {visibility: 'visible'}});
-    tl.from(title, .5, {x: 1000, ease: Power3.easeOut});
-    tl.from(playArea, .5, {x: -1000, ease: Power3.easeOut});
-    tl.from(ruleComponent, .5, {x: 1000, ease: Power3.easeOut});
-    tl.from(aboutRef, 1, {x: -10000, ease: Power3.easeOut});
+    tl.from(aboutRef, 1, {y: -10000, ease: Power3.easeOut});
+    tl.from(playArea, .4, {y: -10000, ease: Power3.easeOut});
+    tl.from(ruleComponent, .4, {y: -1000, ease: Power3.easeOut});
+    tl.from(title, .4, {x: -10000, ease: Power3.easeOut});
+
+
+
   },[tl]);
   return(
     <ParentDiv ref={el => app = el} className="App">
