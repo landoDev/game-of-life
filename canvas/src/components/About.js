@@ -1,5 +1,5 @@
 // component to explain and go in detail about what the game of life is
-import React, {useEffect, us} from 'react';
+import React, {useEffect} from 'react';
 import { AboutContainer } from '../styled';
 import { generateTransitionY } from '../animations/gsap';
 
