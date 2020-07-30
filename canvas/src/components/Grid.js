@@ -1,7 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import produce from 'immer'; // set immutable state
-import { generateTransitionX } from '../animations/gsap';
-
 import { 
     numCols,
     numRows,
@@ -14,13 +12,6 @@ import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar, Preset
 
 
 function Grid() {
-  // Animation Code //
-  const gridAnimation = React.createRef()
-  useEffect(()=>{
-      generateTransitionX(gridAnimation.current, 1, 10)
-  }, [])
-  // ====  *  ==== //
-  // initialize grid
   const [grid, setGrid] = useState(() => {
     // useState initialized as function so it runs once and stays rendered
     return clearGrid();
@@ -108,7 +99,6 @@ function Grid() {
 
   return(
     <GridContainer 
-    ref={gridAnimation}
     className="grid-container">
       <GridBoundary>
       <TopBar className="top-bar">

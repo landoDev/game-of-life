@@ -10,6 +10,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(CSSRulePlugin, Draggable, EaselPlugin, MotionPathPlugin, PixiPlugin, TextPlugin, ScrollToPlugin, ScrollTrigger);
 
+// null useRefs (requires knowing the dom elements and classnames)
+
+// references object
+
+// 
+
 
 export const generateTransitionX = (reference, duration, x) =>{
     gsap.to(reference, {duration: duration, x: x})
