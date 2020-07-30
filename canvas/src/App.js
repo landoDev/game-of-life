@@ -1,6 +1,8 @@
-import React from 'react';
-import { gsap } from "gsap";
-
+import React, { useEffect } from 'react';
+// import { gsap } from "gsap/dist/gsap";
+import {
+  generateTransitionX
+} from './animations/gsap'
 import Grid from './components/Grid';
 import './App.css';
 import Rules from './components/Rules';
@@ -8,11 +10,17 @@ import About from './components/About';
 import { PlayContainer, ParentDiv } from './styled/index';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+
 function App() {
-  gsap.to("#webpage-title", {duration: 5, x: 100})
+  const title = React.createRef();
+  // let split = new SplitText(title.current);
+  useEffect(() => {
+    generateTransitionX(title.current, 1, 100)
+    // gsap.to(title.current, {duration: 1, x: 10})
+  },[title]);
   return(
     <ParentDiv className="App">
-      <h1 id="webpage-title">Lando's Game of Life</h1>
+      <h1 ref={title} id="webpage-title">Lando's Game of Life</h1>
       <PlayContainer className="grid-and-rules">
         <Grid />
         <Rules />
