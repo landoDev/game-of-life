@@ -14,3 +14,7 @@ gsap.registerPlugin(CSSRulePlugin, Draggable, EaselPlugin, MotionPathPlugin, Pix
 export const generateTransitionX = (reference, duration, x) =>{
     gsap.to(reference, {duration: duration, x: x})
 }
+
+export const generateTransitionY = (reference, duration, y) =>{
+    gsap.to(reference, {duration: duration, y: y})
+}
