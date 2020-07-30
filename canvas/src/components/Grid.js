@@ -65,7 +65,7 @@ function Grid() {
     })
 
     // call run sim again
-    setTimeout(runSim, speedRef.current) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, speedRef.current)
   },[]); // empty array ensures the function is only created once
 
   // next step sim, refactor a way to pull this into runSim
