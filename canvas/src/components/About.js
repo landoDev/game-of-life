@@ -2,6 +2,7 @@
 import React from 'react';
 import { AboutContainer } from '../styled';
 
+
 const About = () => {
     return(
         <AboutContainer>

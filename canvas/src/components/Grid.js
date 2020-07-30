@@ -12,7 +12,6 @@ import { GridContainer, ButtonContainer, GridBoundary, PresetDiv, TopBar, Preset
 
 
 function Grid() {
-  // initialize grid
   const [grid, setGrid] = useState(() => {
     // useState initialized as function so it runs once and stays rendered
     return clearGrid();
@@ -65,7 +64,7 @@ function Grid() {
     })
 
     // call run sim again
-    setTimeout(runSim, speedRef.current) // write fn to make setTimeout dynamic later
+    setTimeout(runSim, speedRef.current)
   },[]); // empty array ensures the function is only created once
 
   // next step sim, refactor a way to pull this into runSim
@@ -99,7 +98,8 @@ function Grid() {
   }, []);
 
   return(
-    <GridContainer className="grid-container">
+    <GridContainer 
+    className="grid-container">
       <GridBoundary>
       <TopBar className="top-bar">
         <label className="generations label-topbar">{generation}  Generations</label>

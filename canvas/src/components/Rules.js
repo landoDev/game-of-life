@@ -3,8 +3,10 @@ import { RulesContainer } from '../styled';
 import HowTo from './HowTo';
 
 const Rules = () => {
+
     return (
-        <RulesContainer className="rules-container">
+        <RulesContainer 
+        className="rules-container">
             <h2>Conway's Rules</h2>
             <p>I put my name in the title of this iteration, but alas, I'm far from the Mathematician that invented this little number. I do, however, have access to his rules and how this game works.</p>
             <div className="rules">

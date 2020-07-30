@@ -1,8 +1,10 @@
 import React from 'react';
 
 const HowTo = () => {
+
     return(
-        <div className='HowTo'>
+        <div 
+        className='HowTo'>
             <h2>How to play</h2>
             <p>Choose a preset or click around the play area to make your own configuration</p>
             <p>Click "Start" let the simulation run automatically or "Next" to step through each generation</p>

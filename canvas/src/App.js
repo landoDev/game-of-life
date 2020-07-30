@@ -1,21 +1,46 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { TweenMax, TimelineLite, Power3 } from "gsap";
 import Grid from './components/Grid';
-import './App.css';
+import './App.scss';
 import Rules from './components/Rules';
 import About from './components/About';
 import { PlayContainer, ParentDiv } from './styled/index';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-function App() {
 
+function App() {
+  // in other projects this can live in a gsap file
+  // make a timeline builder out of it for components
+  let app = useRef(null);
+  let componentRef = useRef(null);
+  let aboutRef = useRef(null);
+  let tl = new TimelineLite();
+  // let split = new SplitText(title.current);
+  useEffect(() => {
+    // componentRef vars
+    const title = app.firstElementChild // not best 
+    const playArea = componentRef.firstElementChild
+    const ruleComponent = componentRef.lastElementChild
+    TweenMax.to(app, 0, {css: {visibility: 'visible'}});
+    tl.from(aboutRef, 1, {y: -10000, ease: Power3.easeOut});
+    tl.from(playArea, .4, {y: -10000, ease: Power3.easeOut});
+    tl.from(ruleComponent, .4, {y: -1000, ease: Power3.easeOut});
+    tl.from(title, .4, {x: -10000, ease: Power3.easeOut});
+  },[tl]);
   return(
-    <ParentDiv className="App">
-      <h1>Lando's Game of Life</h1>
-      <PlayContainer className="grid-and-rules">
-        <Grid />
-        <Rules />
+    <ParentDiv ref={el => app = el} className="App">
+      <h1 id="webpage-title">Lando's Game of Life</h1>
+      <PlayContainer 
+      ref={el => componentRef = el}
+      className="grid-and-rules">
+        <Grid className="grid-component" />
+        <Rules className="rules-component" />
       </PlayContainer>
-      <About />
+      <div 
+      ref={el => aboutRef = el}
+      className="about-reference">
+        <About />
+      </div>
       <footer style={{
         color: 'white',
         textAlign: 'center',
