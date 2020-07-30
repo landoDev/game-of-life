@@ -26,9 +26,6 @@ function App() {
     tl.from(playArea, .4, {y: -10000, ease: Power3.easeOut});
     tl.from(ruleComponent, .4, {y: -1000, ease: Power3.easeOut});
     tl.from(title, .4, {x: -10000, ease: Power3.easeOut});
-
-
-
   },[tl]);
   return(
     <ParentDiv ref={el => app = el} className="App">
